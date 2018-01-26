@@ -61,14 +61,14 @@ void setup() {
 
 
 
-//  sound1 = new APMediaPlayer(this);
-//  sound2 = new APMediaPlayer(this);
-//  sound3 = new APMediaPlayer(this);
-//  sound4 = new APMediaPlayer(this);
-//  sound1.setMediaFile("sfx2.mp3");
-//  sound2.setMediaFile("sfx3.mp3");
-//  sound3.setMediaFile("powerup.mp3");
-//  sound4.setMediaFile("chordalSynthPattern02.mp3");
+  //  sound1 = new APMediaPlayer(this);
+  //  sound2 = new APMediaPlayer(this);
+  //  sound3 = new APMediaPlayer(this);
+  //  sound4 = new APMediaPlayer(this);
+  //  sound1.setMediaFile("sfx2.mp3");
+  //  sound2.setMediaFile("sfx3.mp3");
+  //  sound3.setMediaFile("powerup.mp3");
+  //  sound4.setMediaFile("chordalSynthPattern02.mp3");
 
   circles = new ArrayList<Circle>();
   for (int i = 0; i < 6; i++) {
@@ -168,9 +168,6 @@ void showMessage(String msgText, int msgTime) {
   }
 }
 
-
-
-
 void initStar() {
   if (starCounter > 0) {
     star.sY = 4;
@@ -178,17 +175,13 @@ void initStar() {
   }
 }
 
-
-
 boolean winCheck() {
   int count = 0;
   for (Circle c : circles) {
     if (c.collided) {
       count++;
-  
     }
   }
-
   if (count == circles.size()) {
 
     for (Rectangle r : rectangles) {
@@ -219,15 +212,14 @@ void collisionCheck() {
       tri.collided = false;
       tri.deathCollide = false;
       level = LOSE;
-    //  sound2.start();
+      //  sound2.start();
     }
   }
-
   if (tri.collision(star.x, star.y)) {
     tri.collided= false;
     star.collided = true;
     sizeChange();
-  //  sound3.start();
+    //  sound3.start();
   }
 }
 
@@ -285,24 +277,23 @@ void mousePressed() {
 
   canDisplay = true;
 
-    if(pastWin){
-      rectTotal++;
-    }
-    
-    if (level == 1) {
-		if (pastWin) { 
-			for (int i = 0; i < 1; i++) {
-			rectangles.add(new Rectangle(random(width), random(height)));
-			}
-		}	 
-	}
-    if (rectangles.size() > rectTotal + 1) {
-      for (int i = rectangles.size() - 1; i  >= rectTotal + 1; i--) {
-       Rectangle rect = rectangles.get(i);
-        rectangles.remove(i);
+  if (pastWin) {
+    rectTotal++;
+  }
+
+  if (level == 1) {
+    if (pastWin) { 
+      for (int i = 0; i < 1; i++) {
+        rectangles.add(new Rectangle(random(width), random(height)));
       }
     }
-  
+  }
+  if (rectangles.size() > rectTotal + 1) {
+    for (int i = rectangles.size() - 1; i  >= rectTotal + 1; i--) {
+      Rectangle rect = rectangles.get(i);
+      rectangles.remove(i);
+    }
+  }
 }
 
 void rectanglesRemove() {
